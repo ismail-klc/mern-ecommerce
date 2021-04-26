@@ -21,9 +21,8 @@ function HeaderTop() {
                         <div className="shop-menu clearfix pull-right">
                             <ul className="nav navbar-nav">
                                 <li><a href=""><i className="fa fa-user"></i> Account</a></li>
-                                <li><Link to="/checkout"><i className="fa fa-crosshairs"></i> Checkout</Link></li>
                                 <li><Link to="/cart"><i className="fa fa-shopping-cart">
-                                    </i> Cart <span className="badge badge-danger">{cart.cartItems.length}</span> </Link>
+                                    </i> Cart <span className="badge badge-warning">{cart.cartItems.length}</span> </Link>
                                     </li>
                                 <li><a href="login.html"><i className="fa fa-lock"></i> Login</a></li>
                             </ul>

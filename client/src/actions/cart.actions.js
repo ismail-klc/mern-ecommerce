@@ -1,14 +1,14 @@
-import { cartConstants } from "./constants";
+import { localCartConstants } from "./constants";
 
 export const getCart = () => {
     return async (dispatch) => {
-        dispatch({ type: cartConstants.GET_CART_ITEMS })
+        dispatch({ type: localCartConstants.GET_CART_ITEMS })
     }
 }
 
 export const removeFromCart = (product) => {
     return async (dispatch) => {
-        dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS, payload: {product:product} })
+        dispatch({ type: localCartConstants.REMOVE_CART_ITEM_SUCCESS, payload: {product:product} })
 
         let products = JSON.parse(localStorage.getItem('cart'))
         console.log(products.filter(a => a.product !== product));
@@ -19,7 +19,7 @@ export const removeFromCart = (product) => {
 
 export const addTocart = (product, quantity = 1) => {
     return async (dispatch) => {
-        dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
+        dispatch({ type: localCartConstants.ADD_TO_CART_REQUEST });
 
         const cartItem = {
             product: product,
@@ -27,7 +27,7 @@ export const addTocart = (product, quantity = 1) => {
         }
 
         dispatch({
-            type: cartConstants.ADD_TO_CART_SUCCESS,
+            type: localCartConstants.ADD_TO_CART_SUCCESS,
             payload: { cartItem },
         });
 

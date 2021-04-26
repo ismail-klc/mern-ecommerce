@@ -8,12 +8,12 @@ function ProductDetail() {
     const { slug } = useParams()
     const [showedProduct, setShowedProduct] = useState()
     const product = useSelector(state => state.product)
-    
+
     useEffect(() => {
         setShowedProduct(product.products.find(a => a.slug === slug))
-    }, [product, showedProduct ])
+    }, [product, showedProduct])
 
-    
+
 
     if (showedProduct) {
         return (
@@ -68,15 +68,17 @@ function ProductDetail() {
                                                 <span>US ${showedProduct.price}</span>
                                                 <label>Quantity:</label>
                                                 <input type="text" value="1" />
-                                                <button type="button" class="btn btn-fefault cart">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                Add to cart
-                                            </button>
+                                                {
+                                                    showedProduct.quantity > 0 ? 
+                                                    <button type="button" class="btn btn-fefault cart">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        Add to cart
+                                                    </button> : null
+                                                }
                                             </span>
-                                            <p><b>Availability:</b> In Stock</p>
+                                            <p><b>Availability:</b> {showedProduct.quantity > 0 ? "In Stock" : "No Stock"} </p>
                                             <p><b>Condition:</b> New</p>
                                             <p><b>Brand:</b> E-SHOPPER</p>
-                                            <a href=""><img src="/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +100,7 @@ function ProductDetail() {
                                                 </div>
                                             </div>
                                         </div>
-                        
+
                                         <div class="tab-pane" id="reviews" >
                                             <div class="col-sm-12">
                                                 <ul>

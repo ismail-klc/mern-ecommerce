@@ -24,13 +24,14 @@ function Home() {
                                         slug={p.slug}
                                         key={index}
                                         price={p.price}
+                                        quantity={p.quantity}
                                         name={p.name}
                                         image={p.productPictures[0].img}
                                     />
                                 ))}
                             </div>
 
-                            <div className="category-tab">
+                            {/* <div className="category-tab">
                                 <div className="col-sm-12">
                                     <ul className="nav nav-tabs">
                                         <li className="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
@@ -121,9 +122,9 @@ function Home() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <div className="recommended_items">
+                            {/* <div className="recommended_items">
                                 <h2 className="title text-center">recommended items</h2>
 
                                 <div id="recommended-item-carousel" className="carousel slide" data-ride="carousel">
@@ -166,7 +167,7 @@ function Home() {
                                         <i className="fa fa-angle-right"></i>
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>

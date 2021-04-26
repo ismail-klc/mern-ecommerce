@@ -25,7 +25,7 @@ export const authConstants = {
     GET_ALL_PRODUCTS_FAILURE: "GET_ALL_PRODUCTS_FAILURE",
   }
 
-  export const cartConstants = {
+  export const localCartConstants = {
     ADD_TO_CART_REQUEST: "ADD_TO_CART_REQUEST",
     ADD_TO_CART_SUCCESS: "ADD_TO_CART_SUCCESS",
     ADD_TO_CART_FAILURE: "ADD_TO_CART_FAILURE",

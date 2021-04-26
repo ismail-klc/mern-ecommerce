@@ -146,6 +146,7 @@ function Cart() {
                                         <a className="btn btn-default check_out" href="">Continue</a>
                                     </div>
                                 </div>
+
                                 <div className="col-sm-6">
                                     <div className="total_area">
                                         <ul>
@@ -155,9 +156,10 @@ function Cart() {
                                             <li>Total <span>$61</span></li>
                                         </ul>
                                         <a className="btn btn-default update" href="">Update</a>
-                                        <a className="btn btn-default check_out" href="">Check Out</a>
+                                        <Link to="/checkout"><a className="btn btn-default check_out" >Check Out</a></Link>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </section> : null}

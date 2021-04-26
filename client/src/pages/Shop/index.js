@@ -73,6 +73,7 @@ function Shop() {
                                         key={index}
                                         image={p.productPictures[0].img}
                                         price={p.price}
+                                        quantity={p.quantity}
                                         name={p.name}
                                         slug={p.slug}
                                     />

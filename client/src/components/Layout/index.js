@@ -5,7 +5,7 @@ import Footer from '../Footer'
 
 function Layout(props) {
     return (
-        <div>
+        <div >
             <header id="header">
                 <HeaderTop />
                 <HeaderBottom />

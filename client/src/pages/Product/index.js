@@ -34,13 +34,21 @@ function Product(props) {
                             src={`http://localhost:3000/public/${props.image}`} alt="" />
                         <h2>${props.price}</h2>
                         <p>{props.name}</p>
-                        <a onClick={handleAddToCart} className="btn btn-default add-to-cart"><i className="fa fa-shopping-cart"></i>Add to cart</a>
+                        {
+                            props.quantity > 0 ? 
+                            <a onClick={handleAddToCart} className="btn btn-default add-to-cart"><i className="fa fa-shopping-cart"></i>Add to cart</a>
+                            : <a className="btn btn-default add-to-cart">No Stock</a>
+                        }
                     </div>
                     <div className="product-overlay">
                         <div className="overlay-content">
                             <h2>${props.price}</h2>
                             <p>{props.name}</p>
+                            {
+                            props.quantity > 0 ? 
                             <a onClick={handleAddToCart} className="btn btn-default add-to-cart"><i className="fa fa-shopping-cart"></i>Add to cart</a>
+                            : <a className="btn btn-default add-to-cart">No Stock</a>
+                        }
                         </div>
                     </div>
                 </div>

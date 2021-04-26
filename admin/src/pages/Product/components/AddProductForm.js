@@ -57,6 +57,13 @@ export default function AddProductForm(props) {
         }
 
         dispatch(addProduct(form)).then(() => props.handleClose())
+
+        setName("")
+        setPrice("")
+        setCategory("")
+        setDescription("")
+        setStock("")
+        setImage("")
     }
 
     return (

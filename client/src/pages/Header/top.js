@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { signout } from '../../actions/auth.actions'
 
-function HeaderTop() {
+function HeaderTop(props) {
     const cart = useSelector(state => state.cart)
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-    }, [cart.cartItems])
-    
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(signout())
+        console.log(123);
+
+    }
+
     return (
         <div className="header-middle">
             <div className="container">
@@ -22,9 +28,16 @@ function HeaderTop() {
                             <ul className="nav navbar-nav">
                                 <li><a href=""><i className="fa fa-user"></i> Account</a></li>
                                 <li><Link to="/cart"><i className="fa fa-shopping-cart">
-                                    </i> Cart <span className="badge badge-warning">{cart.cartItems.length}</span> </Link>
-                                    </li>
-                                <li><a href="login.html"><i className="fa fa-lock"></i> Login</a></li>
+                                </i> Cart <span className="badge badge-warning">{cart.cartItems.length}</span> </Link>
+                                </li>
+                                {
+                                    props.auth.authenticate ? null :
+                                        <li><Link to="/login"><i className="fa fa-lock"></i> Login</Link></li>
+                                }
+                                {
+                                    !props.auth.authenticate ? null :
+                                        <li><a className="btn" onClick={handleLogout}><i className="fa fa-lock"></i> Logout</a></li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -34,4 +47,10 @@ function HeaderTop() {
     )
 }
 
-export default HeaderTop
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(HeaderTop)

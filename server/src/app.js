@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const env = require('dotenv')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 const path =require('path')
 
@@ -10,6 +9,8 @@ env.config()
 const adminAuthRoute = require('./routes/admin/auth')
 const categoryRoute = require('./routes/category')
 const productRoute = require('./routes/product')
+const cartRoute = require('./routes/cart')
+const authRoute = require('./routes/auth')
 
 // mongoose
 mongoose.connect(process.env.MONGO_DB, {
@@ -28,6 +29,8 @@ app.use(express.json())
 app.use('/api', adminAuthRoute)
 app.use('/api', categoryRoute)
 app.use('/api', productRoute)
+app.use('/api', cartRoute)
+app.use('/api', authRoute)
 
 
 app.listen(process.env.PORT || 3000, () => {

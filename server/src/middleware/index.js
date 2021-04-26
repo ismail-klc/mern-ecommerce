@@ -15,35 +15,41 @@ const storage = multer.diskStorage({
 exports.upload = multer({ storage });
 
 exports.requireSignin = (req, res, next) => {
+  try {
     if (req.headers.authorization) {
-        const token = req.headers.authorization.split(" ")[1];
-        const user = jwt.verify(token, process.env.JWT);
-        req.user = user;
+      const token = req.headers.authorization.split(" ")[1];
+      const user = jwt.verify(token, process.env.JWT);
+      req.user = user;
+      next();
     } else {
-        return res.status(400).json({ message: "Authorization required" });
+      return res.status(400).json({ message: "Authorization required" });
     }
-    next();
+  } catch (error) {
+    return res.status(400).json({ message: "Invalid token" });
+
+  }
+
 };
 
 exports.userMiddleware = (req, res, next) => {
-    if (req.user.role !== "user") {
-      return res.status(400).json({ message: "User access denied" });
-    }
-    next();
-  };
-  
-  exports.adminMiddleware = (req, res, next) => {
-    if (req.user.role !== "admin") {
-      if (req.user.role !== "super-admin") {
-        return res.status(400).json({ message: "Admin access denied" });
-      }
-    }
-    next();
-  };
-  
-  exports.superAdminMiddleware = (req, res, next) => {
+  if (req.user.role !== "user") {
+    return res.status(400).json({ message: "User access denied" });
+  }
+  next();
+};
+
+exports.adminMiddleware = (req, res, next) => {
+  if (req.user.role !== "admin") {
     if (req.user.role !== "super-admin") {
-      return res.status(400).json({ message: "Super Admin access denied" });
+      return res.status(400).json({ message: "Admin access denied" });
     }
-    next();
-  };
+  }
+  next();
+};
+
+exports.superAdminMiddleware = (req, res, next) => {
+  if (req.user.role !== "super-admin") {
+    return res.status(400).json({ message: "Super Admin access denied" });
+  }
+  next();
+};

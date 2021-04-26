@@ -1,6 +1,13 @@
-import { localCartConstants } from "./constants";
+import { localCartConstants, serverCartConstants } from "./constants";
 
-export const getCart = () => {
+export const getCart = (authenticate) => {
+
+    if (authenticate) {
+        return async (dispatch) => {
+            dispatch({ type: serverCartConstants.GET_CART_ITEMS })
+        }
+    }
+
     return async (dispatch) => {
         dispatch({ type: localCartConstants.GET_CART_ITEMS })
     }
